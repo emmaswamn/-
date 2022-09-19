@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import localCache from './../utils/cache'
+import WelcomeMain from './../components/main/welcome/WelcomeMain.vue'
+import UsersList from './../components/main/users/UsersList.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {path:'/', redirect:'/login'},
@@ -15,7 +17,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/home',
     name: 'home',
-    component: HomeView
+    redirect: '/welcome',
+    component: HomeView,
+    children: [
+      {path:'/welcome', component: WelcomeMain},
+      {path:'/users', component: UsersList}
+    ]
   },
   {
     path: '/about',

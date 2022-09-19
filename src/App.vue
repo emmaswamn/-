@@ -1,6 +1,4 @@
 <template>
-  <nav>
-  </nav>
   <router-view/>
 </template>
 
@@ -17,5 +15,19 @@ body,
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+}
+
+.el-breadcrumb{
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.el-table{
+  margin-top: 15px;
+  font-size:12px;
+}
+
+.el-pagination{
+  margin-top: 15px;
 }
 </style>

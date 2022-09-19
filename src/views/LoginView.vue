@@ -35,7 +35,6 @@ import { useRouter} from 'vue-router'
 
 const router = useRouter()
 const store = loginStore()
-const formSize = ref('default')
 
 const loginFormRef = ref<FormInstance>();
 
