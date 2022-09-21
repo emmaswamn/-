@@ -40,7 +40,7 @@
             <el-table-column label="操作" width="180px">
                 <template #default="scope">
                     <!-- modify -->
-                    <el-button type="primary" size="small" :icon="Edit" v-on:click="findUder(scope.row.id)"></el-button>
+                    <el-button type="primary" size="small" :icon="Edit" v-on:click="findUser(scope.row.id)"></el-button>
                     <!-- delete -->
                     <el-button type="danger" size="small" :icon="Delete" v-on:click="removeUserById(scope.row.id)"></el-button>
                     <!-- change role -->
@@ -50,7 +50,7 @@
                         placement="top"
                         v-bind:enterable="false"
                     >
-                        <el-button type="warning" size="small" :icon="Setting"></el-button>
+                        <el-button type="warning" size="small" :icon="Setting"  v-on:click="showAssignDialog(scope.row.username,scope.row.role_name, scope.row.id)"></el-button>
                     </el-tooltip>
                 </template>
             </el-table-column>
@@ -107,10 +107,10 @@
         </el-dialog>
 
         <el-dialog
-        v-model="editDialogVisible"
-        title="修改用户"
-        width="50%"
-        v-on:close="resetForm(editUserFormRef)"
+            v-model="editDialogVisible"
+            title="修改用户"
+            width="50%"
+            v-on:close="resetForm(editUserFormRef)"
         >
             <!-- Main info -->
             <el-form
@@ -140,6 +140,38 @@
             </template>
         </el-dialog>
 
+        <el-dialog
+            v-model="assignDialogVisible"
+            title="分配角色"
+            width="50%"
+            v-on:close="assignDialogClosed"
+        >   
+            <div>
+                <p>当前的用户：{{username}}</p>
+                <p>当前的角色：{{rolename}}</p>
+                <p>分配新角色：
+                    <el-select v-model="selectedRole" placeholder="请选择">
+                        <el-option
+                            v-for="role in roles"
+                            :key="role.id"
+                            :label="role.roleName"
+                            :value="role.id"
+                        />
+                    </el-select>
+                </p>
+            </div>
+            <!-- Footer -->
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button type="primary"
+                    v-on:click="changeRole"
+                    >确认</el-button
+                    >
+                    <el-button @click="assignDialogVisible = false">取消</el-button>
+                </span>
+            </template>
+        </el-dialog>
+
         <el-config-provider :locale="locale"></el-config-provider>
     </el-card>
 </template>
@@ -156,16 +188,13 @@ import { Delete, Edit, Setting } from '@element-plus/icons-vue'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import { addDialogVisible, addUserFormRef, addUserform, addUserRules } from './userhook/addUsers'
 import { editDialogVisible, editUserFormRef, editUserform, editUserRules} from './userhook/editUsers'
+import { assignDialogVisible } from './userhook/assignUserRole'
 import type { FormInstance } from 'element-plus'
 
 let locale = ref(zhCn);
 
 const store = usersStore();
-const { users, total } = storeToRefs(store);
-
-const showScope = (scope: any): void => {
-    console.log(scope);
-}
+const { users, total, roles } = storeToRefs(store);
 
 let pageSize = ref(10) //每页显示条数
 let pageNum = ref(1) //当前页码
@@ -250,7 +279,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 // Edit User
 // 1) find user
 let userId = 0;
-const findUder = async function(id: number) {
+const findUser = async function(id: number) {
     // console.log(id);
     try {
         userId = id;
@@ -281,6 +310,37 @@ const submitEdit = async function (formEl: FormInstance | undefined) {
     }
   })    
 };
+
+// Assign user role
+const username = ref('');
+const rolename = ref('');
+const selectedRole = ref('');
+const showAssignDialog = function(name:string,role_name: string, id:number ) {
+    username.value = name;
+    rolename.value = role_name;
+    userId = id;
+    assignDialogVisible.value = true;
+};
+
+const changeRole = async function() {
+    if(!selectedRole.value) {
+        ElMessage.error('请选择要分配的角色！');
+    }
+    try {
+        await store.assignUserRole({id: userId, rid: +selectedRole.value});
+        ElMessage.success('更新角色成功');
+        logUsers();
+        assignDialogVisible.value = false;
+    } catch (err:any) {
+        ElMessage.error(`${err.message}`);
+    }
+}
+
+const assignDialogClosed = function() {
+    username.value = '';
+    rolename.value = '';
+    selectedRole.value = '';
+}
 
 // get Userlist
 const logUsers = async(num = 1, size = 10, query?:string) => {

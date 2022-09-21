@@ -15,6 +15,7 @@ body,
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  min-width: 1366px;
 }
 
 .el-breadcrumb{

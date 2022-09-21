@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { getUsers, changeUserStatus, addUser, getUsersById, editUsersById, deleteUsersById } from './../api/users'
+import { getUsers, changeUserStatus, addUser, getUsersById, editUsersById, deleteUsersById, assignUserRole } from './../api/users'
 import { getRoles } from './../api/roles'
 import localCache from './../utils/cache';
 
@@ -27,6 +27,11 @@ interface editUserList {
     mobile?:string
 }
 
+interface assignRole {
+    id:number,
+    rid:number
+}
+
 export const usersStore = defineStore('users', {
     persist: true,
     state: () => {
@@ -40,14 +45,16 @@ export const usersStore = defineStore('users', {
         async getUsers(value:userList) {
             const res: any = await getUsers(value);
             // console.log(res);
-            if(res.meta.status === 200){
-               this.users = res.data.users;
-               this.total = res.data.total;
-               const res1: any = await getRoles();
-               this.roles = res1.data;
-            }else {
+            if(res.meta.status !== 200){
                 throw new Error('获取用户列表失败');
             }
+            this.users = res.data.users;
+            this.total = res.data.total;
+            const res1: any = await getRoles();
+            if(res1.meta.status !== 200){
+                throw new Error('获取角色列表失败');
+            }
+            this.roles = res1.data;
         },
 
         async changeUserStatus(data:userStatus){
@@ -75,7 +82,7 @@ export const usersStore = defineStore('users', {
 
         async editUsersById(data:editUserList){
             const res:any = await editUsersById(data.id,data.email,data.mobile);
-            console.log(res);
+            // console.log(res);
             if(res.meta.status !== 200){
                 throw new Error('更新用户失败')
             }
@@ -86,5 +93,12 @@ export const usersStore = defineStore('users', {
                 throw new Error('删除用户失败')
             }
         },
+
+        async assignUserRole(data:assignRole) {
+            const res:any = await assignUserRole(data.id,data.rid)
+            if(res.meta.status !== 200) {
+                throw new Error('更新角色失败');
+            }
+        }
     }
 })
