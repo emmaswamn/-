@@ -59,13 +59,13 @@
         <!-- pagination area -->
 
         <el-pagination
-        v-model:currentPage="pageNum"
-        v-model:page-size="pageSize"
-        :page-sizes="[1,2,5,10]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
+            v-model:currentPage="pageNum"
+            v-model:page-size="pageSize"
+            :page-sizes="[1,2,5,10]"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
         />
 
         <!-- Add user -->
