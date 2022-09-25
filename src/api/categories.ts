@@ -6,6 +6,21 @@ interface cateList {
     pagesize?:number
 }
 
+interface addAttrList{
+  id:number;
+  attr_name:string;
+  attr_sel:string;
+  attr_vals?:string;
+}
+
+interface editAttrList{
+  id:number;
+  attrId:number;
+  attr_name:string;
+  attr_sel:string;
+  attr_vals?:string;  
+}
+
 export function getCatelist(data:cateList) {
     return myRequest.request({
       url: '/categories',
@@ -40,4 +55,66 @@ export function deleteCategories(id:number) {
       url: `categories/${id}`,
       method:'delete'
     })
+}
+
+export function getCateById(id:number, sel:string) {
+  return myRequest.request({
+    url: `categories/${id}/attributes`,
+    params: {sel}
+  })
+}
+
+export function addAttrByCatid(id:number,attr_name:string, attr_sel:string, attr_vals?:string) {
+  let data:addAttrList;
+  if(!attr_vals) {
+    data = {
+      id,
+      attr_name,
+      attr_sel
+    }
+  }else {
+    data = {
+      id,
+      attr_name,
+      attr_sel,
+      attr_vals
+    }
+  }
+  return myRequest.request({
+    url: `categories/${id}/attributes`,
+    method: 'post',
+    data: data
+  })
+}
+
+export function editAttr(id:number,attrId:number, attr_name:string, attr_sel:string, attr_vals?:string) {
+  let data:editAttrList;
+  if(!attr_vals) {
+    data = {
+      id,
+      attrId,
+      attr_name,
+      attr_sel
+    }
+  }else {
+    data = {
+      id,
+      attrId,
+      attr_name,
+      attr_sel,
+      attr_vals
+    }
+  }
+  return myRequest.request({
+    url: `categories/${id}/attributes/${attrId}`,
+    method: 'put',
+    data: data
+  })
+}
+
+export function deleteAttr(id:number,attrId:number) {
+  return myRequest.request({
+    url: `categories/${id}/attributes/${attrId}`,
+    method: 'delete'
+  })
 }

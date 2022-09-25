@@ -184,7 +184,7 @@ const submitAddForm =  async function (formEl: FormInstance | undefined) {
     if (!formEl) return
     await formEl.validate((valid, fields) => {
         if (valid) {
-            console.log(addCateform);
+            // console.log(addCateform);
             store.addCategories({...addCateform})
                 .then(() => {
                     ElMessage.success('创建分类成功');
@@ -196,7 +196,7 @@ const submitAddForm =  async function (formEl: FormInstance | undefined) {
             console.log('error submit!', fields)
         }
     })
-}
+};
 
 // Edit Cate
 const showEditDialog = function(id: number, name:string) {
@@ -204,13 +204,13 @@ const showEditDialog = function(id: number, name:string) {
     editCateform.cat_name = name;
     // console.log(id,name);
     editDialogVisible.value = true;
-}
+};
 
 const submitEditForm = async function (formEl: FormInstance | undefined) {
     if (!formEl) return
     await formEl.validate((valid, fields) => {
         if (valid) {
-            console.log(editCateform);
+            // console.log(editCateform);
             store.editCategories({id:editCateform.cat_id, name:editCateform.cat_name })
                 .then(() => {
                     ElMessage.success('修改分类成功');
