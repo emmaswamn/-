@@ -40,6 +40,7 @@ declare module '@vue/runtime-core' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
     GoodCate: typeof import('./src/components/main/good/GoodCate.vue')['default']
+    GoodParam: typeof import('./src/components/main/good/GoodParam.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     NavHeader: typeof import('./src/components/navigator/NavHeader.vue')['default']
     NavMenu: typeof import('./src/components/navigator/NavMenu.vue')['default']
