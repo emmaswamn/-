@@ -193,7 +193,7 @@ const submitAddForm =  async function (formEl: FormInstance | undefined) {
                 })
                 .catch(err => ElMessage.error(`${err.message}`));
         } else {
-            console.log('error submit!', fields)
+            ElMessage.error('请正确填写表单！');
         }
     })
 };
@@ -219,7 +219,7 @@ const submitEditForm = async function (formEl: FormInstance | undefined) {
                 })
                 .catch(err => ElMessage.error(`${err.message}`));
         } else {
-            console.log('error submit!', fields)
+            ElMessage.error('请正确填写表单！');
         }
     })
 }
@@ -288,7 +288,7 @@ onMounted(() => {
     }
 }
 
-/deep/ .el-tree-node{
+::v-deep .el-tree-node {
     padding: 10px;
     border-bottom: 1px solid #eee;  
 }
