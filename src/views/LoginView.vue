@@ -66,7 +66,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         })
         .catch(err => ElMessage.error(`${err.message}`));
     } else {
-      console.log('error submit!', fields);
+      ElMessage.error('请正确填写表单！');
     }
   })
 };
@@ -122,7 +122,7 @@ const resetLoginForm = (formEl: FormInstance | undefined): void => {
     bottom: 0;
 }
 
-/deep/ .btns .el-form-item__content {
+::v-deep .btns .el-form-item__content {
     justify-content: flex-end;
 }
 </style>

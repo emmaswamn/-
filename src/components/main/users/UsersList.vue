@@ -240,7 +240,7 @@ const submitUser = async function (formEl: FormInstance | undefined) {
                 })
                 .catch(err => ElMessage.error(`${err.message}`));
         } else {
-            console.log('error submit!', fields)
+            ElMessage.error('请正确填写表单！');
         }
     })
 };
@@ -306,7 +306,7 @@ const submitEdit = async function (formEl: FormInstance | undefined) {
             })
             .catch(err => ElMessage.error(`${err.message}`));
     } else {
-        console.log('error submit!', fields)
+        ElMessage.error('请正确填写表单！');
     }
   })    
 };

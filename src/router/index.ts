@@ -7,6 +7,7 @@ import RightView from './../components/main/power/RightView.vue'
 import RoleView from './../components/main/power/RoleView.vue'
 import GoodCate from './../components/main/good/GoodCate.vue'
 import GoodParam from './../components/main/good/GoodParam.vue'
+import GoodList from './../components/main/good/GoodList.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {path:'/', redirect:'/login'},
@@ -29,7 +30,8 @@ const routes: Array<RouteRecordRaw> = [
       {path:'/rights', component: RightView},
       {path:'/roles', component: RoleView},
       {path:'/categories', component: GoodCate},
-      {path:'/params', component: GoodParam}
+      {path:'/params', component: GoodParam},
+      {path:'/goods', component: GoodList}
     ]
   },
   {
