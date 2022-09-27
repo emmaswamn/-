@@ -229,7 +229,7 @@ const getUserList = async function (query: string) {
 // Add User
 const submitUser = async function (formEl: FormInstance | undefined) {
     if (!formEl) return
-    await formEl.validate((valid, fields) => {
+    await formEl.validate((valid) => {
         if (valid) {
             // console.log(addUserform);
             store.addUser({...addUserform})
@@ -296,7 +296,7 @@ const findUser = async function(id: number) {
 // 2) Change userinfo
 const submitEdit = async function (formEl: FormInstance | undefined) {
     if (!formEl) return
-        await formEl.validate((valid, fields) => {
+        await formEl.validate((valid) => {
     if (valid) {
         store.editUsersById({id:userId, mobile:editUserform.mobile, email:editUserform.email})
             .then(() => {

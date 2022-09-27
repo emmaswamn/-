@@ -51,6 +51,7 @@ declare module '@vue/runtime-core' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     NavHeader: typeof import('./src/components/navigator/NavHeader.vue')['default']
     NavMenu: typeof import('./src/components/navigator/NavMenu.vue')['default']
+    OrderList: typeof import('./src/components/main/order/OrderList.vue')['default']
     RightView: typeof import('./src/components/main/power/RightView.vue')['default']
     RoleView: typeof import('./src/components/main/power/RoleView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

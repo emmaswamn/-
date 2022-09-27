@@ -329,7 +329,7 @@ const removeGoodById = async function(id: number) {
 const editorRef = ref();
 const submitAddForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return
-    await formEl.validate((valid, fields) => {
+    await formEl.validate((valid) => {
         if (valid) {
         addGoodform.goods_introduce = editorRef.value.getText();
         const catStr = addGoodform.goods_cat.join(',');

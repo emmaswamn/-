@@ -179,7 +179,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 // Add role
 const submitRoleForm = async function (formEl: FormInstance | undefined) {
     if (!formEl) return
-    await formEl.validate((valid, fields) => {
+    await formEl.validate((valid) => {
         if (valid) {
             // console.log(addRoleform);
             store.addRoles({...addRoleform})
@@ -205,7 +205,7 @@ const openEdit = function(id: number) {
 
 const submitEdit = async function (formEl: FormInstance | undefined) {
     if (!formEl) return
-        await formEl.validate((valid, fields) => {
+        await formEl.validate((valid) => {
     if (valid) {
         store.editRoles({id:roleId, roleName:editRoleform.roleName, roleDesc:editRoleform.roleDesc})
             .then(() => {

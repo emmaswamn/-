@@ -224,7 +224,7 @@ const showAddDialog = function (isParam = true) {
 
 const submitAddForm = async function(formEl: FormInstance | undefined) {
     if (!formEl) return
-    await formEl.validate((valid, fields) => {
+    await formEl.validate((valid) => {
         if (valid) {
             // console.log(addParamform);
             const id = selectCatId.value;
@@ -252,7 +252,7 @@ const showEditDialog = function(attrid: number, isParam=true) {
 
 const submitEditForm = async function(formEl: FormInstance | undefined) {
     if (!formEl) return
-    await formEl.validate((valid, fields) => {
+    await formEl.validate((valid) => {
         if (valid) {
             // console.log(editParamform);
             const id = selectCatId.value;

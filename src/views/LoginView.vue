@@ -56,7 +56,7 @@ const loginFormRules = reactive<FormRules>({
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  await formEl.validate((valid, fields) => {
+  await formEl.validate((valid) => {
     if (valid) {
     //   console.log('submit!');
       store.loginAction({ ...loginForm })

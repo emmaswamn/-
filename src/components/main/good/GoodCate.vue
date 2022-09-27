@@ -182,7 +182,7 @@ const handleChange = function() {
 // 3) submit form
 const submitAddForm =  async function (formEl: FormInstance | undefined) {
     if (!formEl) return
-    await formEl.validate((valid, fields) => {
+    await formEl.validate((valid) => {
         if (valid) {
             // console.log(addCateform);
             store.addCategories({...addCateform})
@@ -208,7 +208,7 @@ const showEditDialog = function(id: number, name:string) {
 
 const submitEditForm = async function (formEl: FormInstance | undefined) {
     if (!formEl) return
-    await formEl.validate((valid, fields) => {
+    await formEl.validate((valid) => {
         if (valid) {
             // console.log(editCateform);
             store.editCategories({id:editCateform.cat_id, name:editCateform.cat_name })
