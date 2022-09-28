@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { getRightsList } from '@/api/rights';
-import { getRoles } from './../api/roles'
+// import { getRoles } from './../api/roles'
 
 export const rightStore = defineStore('right', {
     state: () => {

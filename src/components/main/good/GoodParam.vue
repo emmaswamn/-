@@ -331,7 +331,8 @@ const showInput = (row:any) => {
     row.inputVisible = true
     nextTick(() => {
         // console.log(InputRef);
-        InputRef.value!.input!.focus();
+        InputRef.value?.input?.focus();
+
     })
 };
 
@@ -344,7 +345,7 @@ const handleInputConfirm = async(row:any) => {
     }
     row.attr_vals.push(row.inputValue.trim());
     const vals = row.attr_vals.join(' ');
-    console.log(vals);
+    // console.log(vals);
     row.inputVisible = false;
     row.inputValue = '';
     try {

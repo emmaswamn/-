@@ -162,10 +162,10 @@ import { assignDialogVisible, treeProps, getDefKeys } from './rolehook/assignrig
 import type { FormInstance } from 'element-plus'
 
 
-interface Tree {
-  label: string
-  children?: Tree[]
-}
+// interface Tree {
+//   label: string
+//   children?: Tree[]
+// }
 
 const store = roleStore();
 const { roles, rights } = storeToRefs(store);

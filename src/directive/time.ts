@@ -12,11 +12,11 @@ function formatTimeStamp(TimeStamp: number) {
     MM = MM < 10 ? '0' + MM : MM
     let d: number | string = date.getDate()
     d = d < 10 ? '0' + d : d
-    let h: number | string = date.getHours()
-    h = h < 10 ? '0' + h : h
-    let m: number | string = date.getMinutes()
-    m = m < 10 ? '0' + m : m
-    let s: number | string = date.getSeconds()
-    s = s < 10 ? '0' + s : s
+    // const h: number | string = date.getHours()
+    // h = h < 10 ? '0' + h : h
+    // let m: number | string = date.getMinutes()
+    // m = m < 10 ? '0' + m : m
+    // let s: number | string = date.getSeconds()
+    // s = s < 10 ? '0' + s : s
     return y + '-' + MM + '-' + d
 }

@@ -77,7 +77,6 @@
                         v-model="addressForm.address1"
                         :options="cityOptions"
                         :props="cityProps"
-                        @change="handleChange"
                     />
             </el-form-item>
             <el-form-item label="详细地址" prop="address2">
@@ -98,7 +97,7 @@
 
 <script lang="ts" setup>
 import { ArrowRight, Edit, Location, Search } from '@element-plus/icons-vue'
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { ordersStore } from '@/store/order'
 import { storeToRefs } from 'pinia'
 import { ElMessage } from 'element-plus'
@@ -155,17 +154,12 @@ const getTreeData = function(data: any) {
     return data;
 };
 
-const showEditDialog = async function(id: number) {
+const showEditDialog = async function() {
     editDialogVisible.value = true;
 };
 
 const showLocateDialog = function(){
     ElMessage.warning('查询快递功能尚未开放，敬请期待！')
-};
-
-
-const handleChange = function(){
-    console.log('change');
 };
 
 // Reset Userform

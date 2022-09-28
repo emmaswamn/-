@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ArrowRight, Edit, Location, Search } from '@element-plus/icons-vue'
+import { ArrowRight } from '@element-plus/icons-vue'
 import { init } from './charthook/useEcharts'
 import { onMounted} from 'vue';
 

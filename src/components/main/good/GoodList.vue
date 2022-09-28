@@ -34,7 +34,7 @@
             <el-table-column label="操作" width="180px">
                 <template #default="scope">
                     <!-- modify -->
-                    <el-button type="primary" size="small" :icon="Edit" v-on:click="showEditDialog(scope.row.id)"></el-button>
+                    <el-button type="primary" size="small" :icon="Edit"></el-button>
                     <!-- delete -->
                     <el-button type="danger" size="small" :icon="Delete" v-on:click="removeGoodById(scope.row.goods_id)"></el-button>
                 </template>
@@ -164,7 +164,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import type { FormInstance } from 'element-plus'
 import {drawer,addGoodFormRef,addGoodform,  addGoodRules } from './goodhook/addGood'
-import type { UploadProps, UploadUserFile } from 'element-plus'
+import type { UploadProps } from 'element-plus'
 import localCache from '@/utils/cache'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
@@ -261,7 +261,7 @@ const handleRemove: UploadProps['onRemove'] = (file:any) => {
 const previewPath = ref('');
 const previewVisible = ref(false);
 const handlePreview: UploadProps['onPreview'] = (file:any) => {
-    console.log(file);
+    // console.log(file);
     previewPath.value = file.response.data.url;
     previewVisible.value = true;
 //   console.log(addGoodform);
@@ -278,10 +278,6 @@ let query = ref('');
 
 let pageSize = ref(10) //每页显示条数
 let pageNum = ref(1) //当前页码
-
-const showEditDialog = function (id:number) {
-    console.log(id);
-};
 
 
 // Pagination
