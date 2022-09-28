@@ -288,7 +288,7 @@ onMounted(() => {
     }
 }
 
-::v-deep .el-tree-node {
+:deep(.el-tree-node) {
     padding: 10px;
     border-bottom: 1px solid #eee;  
 }
@@ -303,7 +303,7 @@ onMounted(() => {
         padding-left: 20px;
     }
 }
-/deep/ .el-cascader{
+:deep(.el-cascader) {
     width: 100%;
 }
 </style>

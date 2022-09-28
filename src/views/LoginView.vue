@@ -122,7 +122,7 @@ const resetLoginForm = (formEl: FormInstance | undefined): void => {
     bottom: 0;
 }
 
-::v-deep .btns .el-form-item__content {
+:deep(.btns .el-form-item__content) {
     justify-content: flex-end;
 }
 </style>

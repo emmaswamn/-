@@ -21,9 +21,6 @@
 
 ### Pending
 
-- 商品列表 el-tree 与 el-pagination 不能同时使用。  
-  因为 vue-table-with-tree-grid 只支持 vue2，所以使用 el-tree 替代。目前还没有找到更好的解决方案。
-
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
